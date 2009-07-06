@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.StringTokenizer;
 
+import edu.stanford.smi.protegex.owl.ProtegeOWL;
 import edu.stanford.smi.protegex.owl.model.OWLIndividual;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 import edu.stanford.smi.protegex.owl.model.OWLNamedClass;
@@ -42,7 +43,8 @@ public class AssignPointsToDiseases {
 		while (st.hasMoreTokens())
 		{
 			symptomDescription=st.nextToken();
-			System.out.println(symptomDescription);
+			
+			
 			
 			OWLNamedClass englishTermClass=owlModel.getOWLNamedClass("englishTerm");
 			Collection englishTermCollection=englishTermClass.getInstances();
@@ -57,11 +59,12 @@ public class AssignPointsToDiseases {
 			{
 				symptomCode="none";
 				OWLIndividual termIndividual=(OWLIndividual) it.next(); //displays something like englishTerm_55
-				 
-				if (symptomDescription.equals(termIndividual.getPropertyValue(hasLabelProp).toString()))
+				
+				if (symptomDescription.equals((termIndividual.getPropertyValue(hasLabelProp).toString()).toLowerCase()))
 					{
 					RDFResource resource=(RDFResource) termIndividual.getPropertyValue(hasRootTermProp);
 					symptomCode=resource.getBrowserText();
+					System.out.println("match");
 					done=true;
 					}				
 			}
@@ -149,10 +152,16 @@ public class AssignPointsToDiseases {
 	
 //    public static void main(String[] args) 
 //    {
+//    	try{
+//    	OWLModel owlModel = ProtegeOWL.createJenaOWLModel();
+//	    owlModel = ProtegeOWL.createJenaOWLModelFromURI("file:/home/ndragu/Desktop/biocaster.owl");
 //    	AssignPointsToDiseases ap=new AssignPointsToDiseases();
 //    	StringBuffer sb=new StringBuffer();
-//    	sb.append("Bleeding\nThrombocytopenia\n");
-//    	ap.assignPoints("file:/home/ndragu/Desktop/biocaster.owl", sb.toString());
+//    	sb.append("bleeding\nfrom\ngums\ndeafness\nswollen\nsalivary\nglands\nbleeding from gums\nswollen salivary glands");
+//    	ap.assignPoints(owlModel, sb.toString());
 //    	System.out.println("Output: "+ap.getResult());
+//    	}
+//    	catch (Exception e)
+//    	{}
 //    }
 }

@@ -8,10 +8,10 @@ public class HashTable {
 	private String matches;
 	
 	//could add filename, unigrams or bigrams etc.
-	public HashTable(String inputFileName, String diseaseList) throws IOException
+	public HashTable(String inputFileName, String diseaseList, int nGrams) throws IOException
 	{
 		Scanner in1=new Scanner(new FileInputStream(inputFileName));
-		countWordFreq(in1);
+		countWordFreq(in1, nGrams);
 		matches=match(diseaseList);
 	}
 	
@@ -23,10 +23,14 @@ public class HashTable {
 		return matches;
 	}
 
-	public void countWordFreq(Scanner in) throws IOException {
+	public void countWordFreq(Scanner in, int nGrams) throws IOException {
 	        
 	        String delimiters=",./;'[]-=<>?:{}+_)(*&^%$#@!~";
+	        String nGramWord="";
 	        map=new Hashtable();
+	        
+	        LinkedQueue<String> nGramQueue=new LinkedQueue<String>();
+	        nGramQueue.clear();
 	        
 	        while (in.hasNext())
 	        {
@@ -38,23 +42,25 @@ public class HashTable {
 	        
 	        while (st.hasMoreTokens()) {
 	            word = st.nextToken().toLowerCase();
+	            nGramQueue.enqueue(word);
+	            nGramWord="";
+	            System.out.println(word);
 	            
-	         if (word.length()>3)
-	         {
-	            if (delimiters.indexOf(word.charAt(word.length()-1))>=0)
-	            	word=word.substring(0, word.length()-1);
-	            
-	            if (delimiters.indexOf(word.charAt(0))>=0)
-	            	word=word.substring(1, word.length());
-	            
-	            if (map.containsKey(word)) 
+	            if (nGramQueue.getSize()>=nGrams)
 	            {
-	                int count = (Integer) map.get(word);
-	                map.put(word, count + 1);
-	            } else {
-	                map.put(word, 1);
-	            		}
-	         }//first if
+	            	nGramWord=nGramQueue.getValues();
+	            	nGramQueue.dequeue();
+	            	System.out.println("ngram:"+nGramWord);
+	            	
+	            	if (map.containsKey(nGramWord)) 
+		            {
+		                int count = (Integer) map.get(nGramWord);
+		                map.put(nGramWord, count + 1);
+		            } else {
+		                map.put(nGramWord, 1);
+		            		}
+	            }
+	            
 	        }
 	       }//first while
 	    }
@@ -85,9 +91,9 @@ public class HashTable {
         }	
 	}
 	
-//    public static void main(String[] args) throws IOException {
-//        HashTable test = new HashTable("/home/ndragu/Desktop/test","/home/ndragu/Desktop/all_diseases_symptoms_syndromes");
-//        System.out.println("The match list: "+test.getMatches());
-//    }
+    public static void main(String[] args) throws IOException {
+        HashTable test = new HashTable("/home/ndragu/Desktop/inputText","/home/ndragu/Desktop/all_diseases_symptoms_syndromes",3);
+        //System.out.println("The match list: "+test.getMatches());
+    }
  
 }
