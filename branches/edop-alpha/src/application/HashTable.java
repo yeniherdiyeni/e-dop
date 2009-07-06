@@ -44,20 +44,18 @@ public class HashTable {
 	            word = st.nextToken().toLowerCase();
 	            nGramQueue.enqueue(word);
 	            nGramWord="";
-	            System.out.println(word);
 	            
 	            if (nGramQueue.getSize()>=nGrams)
 	            {
 	            	nGramWord=nGramQueue.getValues();
 	            	nGramQueue.dequeue();
-	            	System.out.println("ngram:"+nGramWord);
 	            	
 	            	if (map.containsKey(nGramWord)) 
 		            {
-		                int count = (Integer) map.get(nGramWord);
-		                map.put(nGramWord, count + 1);
+		                int count = (Integer) map.get(nGramWord.toLowerCase());
+		                map.put(nGramWord.toLowerCase(), count + 1);
 		            } else {
-		                map.put(nGramWord, 1);
+		                map.put(nGramWord.toLowerCase(), 1);
 		            		}
 	            }
 	            
@@ -75,7 +73,7 @@ public class HashTable {
 	   		String word = st.nextToken();
 	   		if (map.containsKey(word.toLowerCase()))
 	   		{
-	   		sb.append(word+"\n");	
+	   		sb.append(word.toLowerCase()+"\n");	
 	   		}
 	   	}
 	  return sb.toString();
@@ -91,9 +89,9 @@ public class HashTable {
         }	
 	}
 	
-    public static void main(String[] args) throws IOException {
-        HashTable test = new HashTable("/home/ndragu/Desktop/inputText","/home/ndragu/Desktop/all_diseases_symptoms_syndromes",3);
-        //System.out.println("The match list: "+test.getMatches());
-    }
+//    public static void main(String[] args) throws IOException {
+//        HashTable test = new HashTable("/home/ndragu/Desktop/inputText","/home/ndragu/Desktop/all_diseases_symptoms_syndromes",3);
+//        //System.out.println("The match list: "+test.getMatches());
+//    }
  
 }

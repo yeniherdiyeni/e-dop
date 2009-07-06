@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.StringTokenizer;
 
-import edu.stanford.smi.protegex.owl.ProtegeOWL;
 import edu.stanford.smi.protegex.owl.model.OWLIndividual;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 import edu.stanford.smi.protegex.owl.model.OWLNamedClass;
@@ -28,8 +27,6 @@ public class AssignPointsToDiseases {
     	String symptomCode="";    	
     	String symptomDescription="";
     	
-    	OWLNamedClass allDiseasesClass = owlModel.getOWLNamedClass("DISEASE");
-        
 		//--------------------------------------------------------------------
 		OWLProperty hasRootTermProp= owlModel.getOWLProperty("hasRootTerm");		
 		OWLProperty hasLabelProp= owlModel.getOWLProperty("label");
@@ -64,7 +61,6 @@ public class AssignPointsToDiseases {
 					{
 					RDFResource resource=(RDFResource) termIndividual.getPropertyValue(hasRootTermProp);
 					symptomCode=resource.getBrowserText();
-					System.out.println("match");
 					done=true;
 					}				
 			}
@@ -138,7 +134,7 @@ public class AssignPointsToDiseases {
 			if (holder[j].getDiseaseIndividual().getPropertyValue(hasLabelProp)!=null)
 				finalResult.append(holder[j].getDiseaseIndividual().getPropertyValue(hasLabelProp).toString());
 			else 
-				System.out.print(holder[j].getDiseaseIndividual().getBrowserText());
+				finalResult.append(holder[j].getDiseaseIndividual().getBrowserText());
 			
 			finalResult.append(" has "+holder[j].getDiseaseList().getLength()+" point(s)"+"\n");
 			
@@ -146,6 +142,7 @@ public class AssignPointsToDiseases {
 				{
 				finalResult.append("----"+holder[j].getDiseaseList().getEntry(k+1).getPropertyValue(hasLabelProp).toString()+"\n");	
 				}
+			finalResult.append("\n");
 			}
 			result=finalResult.toString();
 	}
