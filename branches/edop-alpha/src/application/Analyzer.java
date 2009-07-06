@@ -31,8 +31,20 @@ public class Analyzer {
 		allDiseasesList.computeList(owlModel);
 		String ontologyTerms=allDiseasesList.getDiseaseList();
 		
-		HashTable ht=new HashTable(inputFilePath, ontologyTerms);
-		String matches=ht.getMatches();
+		String matches="";
+		//pass titles[].isSelected to the HashTable constructor
+		for (int i=0; i<titles.length; i++)
+		{
+			if (titles[i].isSelected())
+			{
+				HashTable ht=new HashTable(inputFilePath, ontologyTerms,i+1);
+				matches=matches+ht.getMatches();
+				System.out.println("----------------");
+				ht.display();
+				System.out.println("----------------");
+			}
+		}
+		System.out.println("This is matches: "+matches);
 		
 		AssignPointsToDiseases ap=new AssignPointsToDiseases();
 		ap.assignPoints(owlModel, matches);

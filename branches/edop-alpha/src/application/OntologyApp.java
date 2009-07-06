@@ -105,7 +105,7 @@ public class OntologyApp extends JApplet implements ItemListener, ActionListener
      *   border around it.
      */
     private void initChoices() {
-        choicePanel.setBorder(BorderFactory.createTitledBorder("Onotlogy"));
+        choicePanel.setBorder(BorderFactory.createTitledBorder("Word List "));
         choicePanel.setLayout(new BoxLayout(choicePanel, BoxLayout.Y_AXIS));
     
         for (int k = 0; k < titles.length; k++) {
@@ -121,7 +121,7 @@ public class OntologyApp extends JApplet implements ItemListener, ActionListener
      *   border around it.
      */
     private void initOptions() {
-        optionPanel.setBorder(BorderFactory.createTitledBorder("Frequency List "));
+        optionPanel.setBorder(BorderFactory.createTitledBorder("Ontology "));
         optionPanel.setLayout(new BoxLayout(optionPanel, BoxLayout.Y_AXIS));
      
         for (int k = 0; k < options.length; k++) {
