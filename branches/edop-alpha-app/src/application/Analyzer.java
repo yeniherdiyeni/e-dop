@@ -26,7 +26,7 @@ public class Analyzer {
 		
 		OWLModel owlModel = ProtegeOWL.createJenaOWLModel();
 	    owlModel = ProtegeOWL.createJenaOWLModelFromURI(ontologyPath);
-			
+	    
 		OutputListToText allDiseasesList=new OutputListToText();
 		allDiseasesList.computeList(owlModel);
 		String ontologyTerms=allDiseasesList.getDiseaseList();
@@ -44,6 +44,8 @@ public class Analyzer {
 				System.out.println("----------------");
 			}
 		}
+		System.out.println("This is matches: "+matches);
+		
 		System.out.println("This is matches: "+matches);
 		
 		AssignPointsToDiseases ap=new AssignPointsToDiseases();
