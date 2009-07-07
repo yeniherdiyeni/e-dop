@@ -1,17 +1,11 @@
 package application;
 
-/*
- *  File: OrderApplet.java
- *  Author: Java, Java, Java
- *  Description: This applet introduces some additional Swing
- *   components, including the JCheckBox and JRadioButton classes.
- *   An ItemListener interface is implemented to support check box
- *   and radio button actions. Also, the BorderFactory class is used
- *   to create borders around various areas of the applet window.
- */
-
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -22,16 +16,16 @@ import java.io.IOException;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class OntologyApp extends JApplet implements ItemListener, ActionListener {
+public class OntologyApp extends JFrame implements ItemListener, ActionListener {
 
     private final int NTITLES = 3, NOPTIONS = 3;
  
@@ -57,17 +51,12 @@ public class OntologyApp extends JApplet implements ItemListener, ActionListener
                     exit = new JButton("Exit");
 
     private JButton Browse = new JButton("Browse");
-   //JFrame frame = new JFrame("JComboBox Test");
-   // frame.setLayout(new FlowLayout());
-   // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-    /**
-     * init() sets up the interface. Note that it calls the initChoices()
-     *  and initOptions() methods to set up the check boxes and radio buttons.
-     *  Also, note that it uses several panels to organize the interface into
-     *  distinct areas, making it easier for the user to navigate.
-     */
-    public void init() {
+  
+    
+    
+    
+    
+    public  OntologyApp() {
         mainPanel.setBorder(BorderFactory.createTitledBorder("Ontolgy Application Interface"));
         mainPanel.setLayout(new GridLayout(3, 1, 0, 0));
         exit.addActionListener(this);
@@ -98,13 +87,9 @@ public class OntologyApp extends JApplet implements ItemListener, ActionListener
         setSize(400,400);
         submit.setEnabled(false);
     } // init()
- 
-    /**
-     * initChoices() initializes the JCheckBoxes which are organized
-     *   into a separate panel, layed out in BoxLayout format with a
-     *   border around it.
-     */
-    private void initChoices() {
+
+    
+    public void initChoices() {
         choicePanel.setBorder(BorderFactory.createTitledBorder("Word List "));
         choicePanel.setLayout(new BoxLayout(choicePanel, BoxLayout.Y_AXIS));
     
@@ -115,12 +100,8 @@ public class OntologyApp extends JApplet implements ItemListener, ActionListener
         }
     } // initChoices()
 
-    /**
-     * initOptions() initializes the JRadioButtons which are organized
-     *   into a separate panel, layed out in BoxLayout format with a
-     *   border around it.
-     */
-    private void initOptions() {
+   
+    public void initOptions() {
         optionPanel.setBorder(BorderFactory.createTitledBorder("Ontology "));
         optionPanel.setLayout(new BoxLayout(optionPanel, BoxLayout.Y_AXIS));
      
@@ -131,14 +112,10 @@ public class OntologyApp extends JApplet implements ItemListener, ActionListener
             optGroup.add(options[k]);
         }
         options[0].setSelected(true);
-    } // initOptions()
-
-    /**
-     * itemStateChanged() handles the user's check box and radio button
-     *   selections. In each case, it appends some text to the main
-     *   display area.
-     * @param e -- the ItemEvent that led to this method call
-     */
+    } // initOptions()    
+       
+    
+    
     public void itemStateChanged(ItemEvent e) {
         display.setText("Your options so far: ");
         for (int k = 0; k < options.length; k++ )
@@ -151,13 +128,6 @@ public class OntologyApp extends JApplet implements ItemListener, ActionListener
     
     // itemStateChanged()
  
-    /**
-     * actionPerformed() handles the applet's action events
-     *  Note that the submit button changes labels depending on the state
-     *  of the user's order. In effect, the button's label keeps track of
-     *  the applet's state -- either submitting or confirming an order.
-     * @param e -- the ActionEvent that led to this method call
-     */
     public void actionPerformed(ActionEvent e)
     {
         
@@ -186,7 +156,7 @@ public class OntologyApp extends JApplet implements ItemListener, ActionListener
          
           Analyzer a=new Analyzer();
           try {
-        	  a = new Analyzer("file:/home/ndragu/Desktop/biocaster.owl", selectedFile.getCanonicalPath(), titles);
+        	  a = new Analyzer("file:/home/gen_coms02/Biocaster/BioCaster.owl", selectedFile.getCanonicalPath(), titles);
           	}				 
           catch (IOException e1) 
           {}
@@ -204,4 +174,55 @@ public class OntologyApp extends JApplet implements ItemListener, ActionListener
           display.setText("");
         }
     }
-   }
+    
+public static void main(String[] args)
+{
+     OntologyApp f = new OntologyApp();
+     f.setSize(500,400);
+     f.setVisible(true);
+}
+}
+
+
+
+//     f.setLayout(new FlowLayout());
+//      f.addWindowListener(new windowListener());
+//     f.setLayout(new GridBagLayout());
+//	 GridBagConstraints constraints = new GridBagConstraints();
+//	 constraints.gridx = 0;
+//	 constraints.gridy = 0;
+//	 constraints.weightx = 50;
+//	 constraints.weighty = 50;
+//	 constraints.anchor = GridBagConstraints.CENTER;
+//	 constraints.fill = GridBagConstraints.BOTH;
+//	
+//	 f.add(f, constraints);
+//	 f.pack();
+//	 f.setSize(850, 575);
+
+//	 // Center the window
+//	 Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//	 Dimension frameSize = f.getSize();
+//	 if (frameSize.height > screenSize.height)
+//	 {
+//	 frameSize.height = screenSize.height;
+//	 }
+//	 if (frameSize.width > screenSize.width)
+//	 {
+//	 frameSize.width = screenSize.width;
+//	 }
+//	 f.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+//	 f.setVisible(true);
+//	 }
+
+
+    		
+//    		 public static void main(String args[])
+//    		 {
+//    			 
+//    			OntologyApp applet = new OntologyApp();
+//    		 Frame frame = new Frame("Ontology");
+    		 
+    		
+    		 // set the layout and add the applet
+    		
