@@ -10,7 +10,6 @@ package application;
  *   to create borders around various areas of the applet window.
  */
 
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +17,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -166,7 +166,7 @@ public class OntologyApp extends JApplet implements ItemListener, ActionListener
             returnValue = fileChooser.showOpenDialog(null);
             selectedFile = fileChooser.getSelectedFile();
             try {
-				display.setText("Click 'Browse' to import a text file \n "+"You selected the following file: "+selectedFile.getCanonicalPath()+"\n");
+				display.append("Click 'Browse' to import a text file \n "+"You selected the following file: "+selectedFile.getCanonicalPath()+"\n");
 				submit.setEnabled(true);
 			} 
             catch (IOException e1) 
@@ -186,7 +186,12 @@ public class OntologyApp extends JApplet implements ItemListener, ActionListener
          
           Analyzer a=new Analyzer();
           try {
-        	  a = new Analyzer("file:/home/ndragu/Desktop/biocaster.owl", selectedFile.getCanonicalPath(), titles);
+        	 // a = new Analyzer("file:/home/ndragu/Desktop/biocaster.owl", selectedFile.getCanonicalPath(), titles);\
+        	  
+        	  String filepath = System.getProperty("user.dir") + File.separatorChar + "biocaster.owl";
+        	  filepath="file:"+filepath;
+        	  System.out.println(filepath);
+        	  a = new Analyzer(filepath, selectedFile.getCanonicalPath(), titles);
           	}				 
           catch (IOException e1) 
           {}
@@ -201,7 +206,8 @@ public class OntologyApp extends JApplet implements ItemListener, ActionListener
        
         else
         {
-          display.setText("");
+          display.append("");
         }
     }
+
    }
