@@ -7,7 +7,6 @@ public class HashTable {
 	private Hashtable map;
 	private String matches;
 	
-	//could add filename, unigrams or bigrams etc.
 	public HashTable(String inputFileName, String diseaseList, int nGrams) throws IOException
 	{
 		Scanner in1=new Scanner(new FileInputStream(inputFileName));
@@ -18,7 +17,7 @@ public class HashTable {
 	public Hashtable getMap() {
 		return map;
 	}
-
+	
 	public String getMatches() {
 		return matches;
 	}
@@ -91,7 +90,30 @@ public class HashTable {
 	
 //    public static void main(String[] args) throws IOException {
 //        HashTable test = new HashTable("/home/ndragu/Desktop/inputText","/home/ndragu/Desktop/all_diseases_symptoms_syndromes",3);
-//        //System.out.println("The match list: "+test.getMatches());
+//        
 //    }
  
 }
+
+
+
+
+//public String eliminatePunctuation(String nGramWord)
+//{
+//	String punctuation=",.:;!?";
+//	int wordLength=nGramWord.length();
+//	boolean acceptable=true;
+//	System.out.println(nGramWord);
+//	
+//	if (nGramWord.indexOf(punctuation)>0 && nGramWord.indexOf(punctuation)<wordLength)
+//	{
+//	acceptable=false;	
+//	System.out.println("found");
+//	}
+//	else 
+//	{
+//		System.out.println("not found");
+//	}
+//	
+//	return nGramWord;
+//}

@@ -1,11 +1,6 @@
 package application;
 
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -36,8 +31,10 @@ public class OntologyApp extends JFrame implements ItemListener, ActionListener 
                    buttonPanel = new JPanel();
     
     private int returnValue;
+    private int returnValue2;
     private JFileChooser fileChooser = new JFileChooser();
     private File selectedFile;
+    private File selectedFile2;
     private ButtonGroup optGroup = new ButtonGroup();
     private JCheckBox titles[] = new JCheckBox[NTITLES];
     private JRadioButton options[] = new JRadioButton[NOPTIONS];
@@ -50,42 +47,63 @@ public class OntologyApp extends JFrame implements ItemListener, ActionListener 
     private JButton submit = new JButton("Submit"),
                     exit = new JButton("Exit");
 
-    private JButton Browse = new JButton("Browse");
-  
+    private JButton Browse = new JButton("Input File");
+    private JButton browseOntology = new JButton("Ontology");
+    private JButton instructions = new JButton("Instructions");
+    private JButton clear = new JButton("Clear Console");
     
     
     
     
     public  OntologyApp() {
         mainPanel.setBorder(BorderFactory.createTitledBorder("Ontolgy Application Interface"));
-        mainPanel.setLayout(new GridLayout(3, 1, 0, 0));
+        mainPanel.setLayout(new GridLayout(3, 2, 0, 0));
+        
         exit.addActionListener(this);
         submit.addActionListener(this);
         Browse.addActionListener(this);
+        browseOntology.addActionListener(this);
+        instructions.addActionListener(this);
+        clear.addActionListener(this);
         
         initChoices();
         initOptions();
+        
         buttonPanel.setBorder( BorderFactory.createTitledBorder(""));
         buttonPanel.add(exit);
         buttonPanel.add(submit);
+        buttonPanel.add(Browse);
+        
         centerPanel.add(choicePanel);
         centerPanel.add(optionPanel);
+        centerPanel.add(browseOntology);
+        centerPanel.add(instructions);
+        centerPanel.add(clear);
         
-        
-        buttonPanel.add(Browse);
- 
         mainPanel.add(centerPanel);
         mainPanel.add( buttonPanel);
         
-        
+  
+        display.setBorder(BorderFactory.createTitledBorder("Console"));
         display.setLineWrap(true);
         scrollText=new JScrollPane(display);
         scrollText.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         mainPanel.add(scrollText);
         
         getContentPane().add(mainPanel);
-        setSize(400,400);
+        
+        
         submit.setEnabled(false);
+        
+        selectedFile=null;
+        selectedFile2=null;
+        
+        display.append("\n");
+        display.append("1. Select a Word List\n");
+        display.append("2. Select an existing ontology or import one by clicking <Ontology>\n");
+        display.append("3. Click Submit to compute the result\n");
+        display.append("\n");
+        display.append("Default Ontology: Biocaster\n\n");
     } // init()
 
     
@@ -98,6 +116,8 @@ public class OntologyApp extends JFrame implements ItemListener, ActionListener 
             titles[k].addItemListener(this);
             choicePanel.add(titles[k]);
         }
+        titles[0].setSelected(true);
+        
     } // initChoices()
 
    
@@ -112,32 +132,46 @@ public class OntologyApp extends JFrame implements ItemListener, ActionListener 
             optGroup.add(options[k]);
         }
         options[0].setSelected(true);
+        options[1].setEnabled(false);
+        options[2].setEnabled(false);
     } // initOptions()    
        
     
     
     public void itemStateChanged(ItemEvent e) {
-        display.setText("Your options so far: ");
-        for (int k = 0; k < options.length; k++ )
-            if (options[k].isSelected())
-                display.append(options[k].getText() + "\n");
-        for (int k = 0; k < titles.length; k++ )
-            if (titles[k].isSelected())
-                display.append("\t" + titles[k].getText() + "\n");
+        
     }
     
     // itemStateChanged()
  
     public void actionPerformed(ActionEvent e)
     {
-        
+    	if (e.getSource()==clear)
+    	{
+    		display.setText("");
+    	}
+    	else
+    	if (e.getSource() == instructions)
+    	{
+    		display.append("\n");
+            display.append("1. Select a Word List\n");
+            display.append("2. Select an existing ontology or import one by clicking <Ontology>\n");
+            display.append("3. Click Submit to compute the result\n");
+            display.append("4. Please wait a few moments after clicking on Submit!");
+            display.append("\n");
+    	}
+    	
+    	else
         if(e.getSource() == Browse)
         {
             returnValue = fileChooser.showOpenDialog(null);
             selectedFile = fileChooser.getSelectedFile();
             try {
-				display.setText("Click 'Browse' to import a text file \n "+"You selected the following file: "+selectedFile.getCanonicalPath()+"\n");
-				submit.setEnabled(true);
+            	display.append("\n");
+				display.append("File: "+selectedFile.getCanonicalPath()+"\n");
+				if (selectedFile!=null)
+					submit.setEnabled(true);
+				
 			} 
             catch (IOException e1) 
             {}
@@ -146,7 +180,9 @@ public class OntologyApp extends JFrame implements ItemListener, ActionListener 
                 
         else if (e.getSource() == submit)
         {
-          display.append("Press Submit !\n");
+          if ((titles[0].isSelected()) || (titles[1].isSelected()) || (titles[2].isSelected()) )
+          {
+          display.append("\n");
           submit.setText("Confirm\n");          
           submit.setText("Submit\n");
           
@@ -156,26 +192,40 @@ public class OntologyApp extends JFrame implements ItemListener, ActionListener 
          
           Analyzer a=new Analyzer();
           try {
-
-//        	  String filepath = System.getProperty("user.dir") + File.separatorChar + "biocaster.owl";
-//        	  if (filepath.indexOf(':')>=0 || filepath.indexOf(':')<=2)
-//        	  {
-//        	  filepath="file:///"+filepath;
-//        	  filepath=filepath.replace('\\','/');
-//        	  }
-//        	  else filepath="file:"+filepath;        	  
-       	  a = new Analyzer("http://www.cs.trincoll.edu/~ndragu/ontology/biocaster.owl", selectedFile.getCanonicalPath(), titles);
-
-          	}				 
+          
+          if (selectedFile2==null) 	  
+        	  a = new Analyzer("http://www.cs.trincoll.edu/~ndragu/ontology/biocaster.owl", selectedFile.getCanonicalPath(), titles);
+          else 
+          	{
+        	  String ontologyPath="file:"+selectedFile2.getCanonicalPath();
+        	  a = new Analyzer(ontologyPath, selectedFile.getCanonicalPath(), titles);
+          	}
+          }				 
           catch (IOException e1) 
           {}
 		
           display.append(a.getResult());
+          }
+          else //if (titles[0].isSelected() || (titles[1].isSelected()) || (titles[2].isSelected()) )
+        	  display.append("No Word List is selected!");
         }
     
         else if (e.getSource() == exit)
         {  
             System.exit(0);
+        }
+        
+        else if (e.getSource() == browseOntology)
+        {
+        	 returnValue2 = fileChooser.showOpenDialog(null);
+             selectedFile2 = fileChooser.getSelectedFile();
+             try {
+ 				display.append("Ontology: "+selectedFile2.getCanonicalPath()+"\n");
+ 				if (selectedFile2!=null && selectedFile!=null)
+					submit.setEnabled(true);
+ 			} 
+             catch (IOException e1) 
+             {}
         }
        
         else
@@ -187,51 +237,15 @@ public class OntologyApp extends JFrame implements ItemListener, ActionListener 
 public static void main(String[] args)
 {
      OntologyApp f = new OntologyApp();
-     f.setSize(500,400);
+     f.setSize(500,500);
      f.setVisible(true);
 }
 }
 
-
-
-//     f.setLayout(new FlowLayout());
-//      f.addWindowListener(new windowListener());
-//     f.setLayout(new GridBagLayout());
-//	 GridBagConstraints constraints = new GridBagConstraints();
-//	 constraints.gridx = 0;
-//	 constraints.gridy = 0;
-//	 constraints.weightx = 50;
-//	 constraints.weighty = 50;
-//	 constraints.anchor = GridBagConstraints.CENTER;
-//	 constraints.fill = GridBagConstraints.BOTH;
-//	
-//	 f.add(f, constraints);
-//	 f.pack();
-//	 f.setSize(850, 575);
-
-//	 // Center the window
-//	 Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-//	 Dimension frameSize = f.getSize();
-//	 if (frameSize.height > screenSize.height)
-//	 {
-//	 frameSize.height = screenSize.height;
-//	 }
-//	 if (frameSize.width > screenSize.width)
-//	 {
-//	 frameSize.width = screenSize.width;
-//	 }
-//	 f.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
-//	 f.setVisible(true);
-//	 }
-
-
-    		
-//    		 public static void main(String args[])
-//    		 {
-//    			 
-//    			OntologyApp applet = new OntologyApp();
-//    		 Frame frame = new Frame("Ontology");
-    		 
-    		
-    		 // set the layout and add the applet
-    		
+//String filepath = System.getProperty("user.dir") + File.separatorChar + "biocaster.owl";
+//if (filepath.indexOf(':')>=0 || filepath.indexOf(':')<=2)
+//{
+//filepath="file:///"+filepath;
+//filepath=filepath.replace('\\','/');
+//}
+//else filepath="file:"+filepath;      
