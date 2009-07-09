@@ -40,9 +40,7 @@ public class AssignPointsToDiseases {
 		while (st.hasMoreTokens())
 		{
 			symptomDescription=st.nextToken();
-			
-			
-			
+				
 			OWLNamedClass englishTermClass=owlModel.getOWLNamedClass("englishTerm");
 			Collection englishTermCollection=englishTermClass.getInstances();
 			Iterator it=englishTermCollection.iterator();
@@ -69,7 +67,6 @@ public class AssignPointsToDiseases {
 			sb.append(symptomCode+"\n");
 		}
 		
-		
 		//-----------------------------finding diseases and assigning points-------------------------
 		
 		int i=-1;
@@ -80,6 +77,44 @@ public class AssignPointsToDiseases {
 			i++;
 			symptomCode=st.nextToken();
 			System.out.println("Symptom Code:"+symptomCode);
+			
+			//here you should add handling of diseases and syndromes already mentioned in the input file
+			if (symptomCode.indexOf("DISEASE_")>-1)
+			{
+				boolean found=false;
+					
+				for (int j=0; (j<diseaseHolderSize) && (!found); j++)
+				{
+					if (symptomCode.equals(holder[j].getDiseaseIndividual().getBrowserText()))
+					{
+					found=true;	
+					}
+				}
+				if (!found)
+				{
+				holder[diseaseHolderSize]=new DiseaseHolder(owlModel.getOWLIndividual(symptomCode));
+				diseaseHolderSize++;
+				}
+			}
+			else
+				if (symptomCode.indexOf("SYNDROME_")>-1)
+				{
+					boolean found=false;
+						
+					for (int j=0; (j<diseaseHolderSize) && (!found); j++)
+					{
+						if (symptomCode.equals(holder[j].getDiseaseIndividual().getBrowserText()))
+						{
+						found=true;	
+						}
+					}
+					if (!found)
+					{
+					holder[diseaseHolderSize]=new DiseaseHolder(owlModel.getOWLIndividual(symptomCode));
+					diseaseHolderSize++;
+					}
+				}
+			else
 			if (symptomCode.indexOf("SYMPTOM_")>-1)   //you do this because some might not be correct codes
 			{
 			OWLIndividual symptomIndividual=owlModel.getOWLIndividual(symptomCode);
