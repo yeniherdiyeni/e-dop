@@ -22,6 +22,9 @@ public class OutputListToText {
 	{
 		try
 		{
+		PrintWriter outputFile;
+	    outputFile=new PrintWriter("all_diseases_symptoms_syndromes.txt");
+			
 		StringBuffer sb=new StringBuffer();
     	        //getting access to the diseases, symptoms and syndromes classes
         OWLNamedClass allDiseasesClass = owlModel.getOWLNamedClass("DISEASE");
@@ -67,6 +70,8 @@ public class OutputListToText {
 		}
 		
 		diseaseList=sb.toString();
+		outputFile.append(diseaseList);
+		outputFile.close();
 	}
 	catch (Exception e)
 	{}
