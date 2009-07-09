@@ -102,6 +102,7 @@ public class OntologyApp extends JFrame implements ItemListener, ActionListener 
         display.append("3. Click Submit to compute the result\n");
         display.append("\n");
         display.append("Default Ontology: Biocaster\n\n");
+        display.setLineWrap(true);
     } // init()
 
     
