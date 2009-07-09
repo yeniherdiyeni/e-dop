@@ -53,8 +53,6 @@ public class OntologyApp extends JFrame implements ItemListener, ActionListener 
     private JButton clear = new JButton("Clear Console");
     
     
-    
-    
     public  OntologyApp() {
         mainPanel.setBorder(BorderFactory.createTitledBorder("Ontolgy Application Interface"));
         mainPanel.setLayout(new GridLayout(3, 2, 0, 0));
