@@ -1,0 +1,179 @@
+Tick-borne encephalitis
+Feline AIDS
+Escherichia coli infection
+Lyme disease
+Severe acute respiratory syndrome
+Equine influenza
+Canine influenza
+Scrub typhus
+West Nile fever
+Multidrug-Resistant Salmonella serotype typhimurium DT104 infection
+Gastrointestinal anthrax
+Viral hemorrhagic fever
+Sylvan yellow  fever
+Urban yellow  fever
+Hantavirus infection
+Hepatitis B
+Mosquito-borne viral encephalitis
+Dengue shock syndrome
+Tularemia
+Meningococcal meningitis
+West Nile virus encephalitis
+Japanese encephalitis
+Yellow  fever
+Marburg virus disease
+Cyclosporiasis
+La Crosse encephalitis
+Cholera
+Meningococcemia
+Salmonellosis
+Anthrax
+Cutaneous anthrax
+Methicillin-Resistant Staphylococcus aureus infection
+Influenza
+Avian influenza
+Highly pathogenic H5N1 avian influenza
+Foot-and-mouth disease
+Brucellosis
+Lassa fever
+Bolivian hemorrhagic fever
+Ebola hemorrhagic fever
+Schistosomiasis
+Venezuelan hemorrhagic fever
+Mumps
+Venezuelan equine encephalitis
+Kyasanur Forest disease
+Chickenpox
+Dengue hemorrhagic fever
+Typhoid fever
+Dengue fever
+Chikungunya fever
+Nipah virus infection
+Crimean-Congo hemorrhagic fever
+Plague
+California encephalitis
+Rift valley fever
+Hepatitis A
+Classical swine fever
+Giardiasis
+Amebiasis
+Q fever
+Melioidosis
+Tuberculosis
+Low pathogenic avian influenza A
+Botulism
+Hantavirus pulmonary syndrome
+Systemic anthrax
+Pulmonary anthrax
+Monkeypox
+Smallpox
+Rheumatic fever
+Group A streptococcal infection
+Necrotizing fasciitis
+Listeria meningitis
+Epidemic typhus
+Falciparum malaria
+Brain damage
+Lethargy
+Coma
+Delirium
+Disorientation
+Hypotension
+Hypovolemic shock
+Encephalitis
+Cerebral dysfunction
+Retro-orbital pain
+Drowsiness
+Photophobia
+Paralysis
+Dizziness
+Hemiparesis
+Mental retardation
+Weakness
+Cachexia
+Dehydration
+Weight loss
+Fatigue
+Liver dysfunction
+Organ failure
+Asthenia
+Emaciation
+Body ache
+Stiff neck
+Arthralgia
+Backache
+Conjunctivitis
+Red eyes
+Blindness
+Corneal ulceration
+Eye infection
+Deafness
+Oral blister
+Bleeding from gums
+Sore throat
+Swollen salivary glands
+Nasal congestion
+Runny nose
+Red tongue
+Apathy
+Depression
+Emotional lability
+Respiratory failure
+Hyperventilation
+Cough
+Bradycardia
+Respiratory distress
+Orthopnea
+Dyspnea
+Myocarditis
+Chest pain
+Atypical pneumonia
+Rales
+Respiratory infection
+Splenomegaly
+Lymphadenopathy
+Swollen lymph nodes
+Infertility
+Orchitis
+Kidney dysfunction
+Proteinuria
+Shock
+Sepsis
+Circulatory collapse
+Acidosis
+Subcutaneous hemorrhage
+Bleeding
+Bleeding from orifices
+Thrombocytopenia
+Subungual hematoma
+Leukopenia
+Hemoconcentration
+Internal bleeding
+Jaundice
+Leukocytosis
+Hemolytic anemia
+Immunosuppression
+Diarrhea
+Vomit
+Nausea
+Gastrointestinal inflammation
+Dysentery
+Coffee ground vomiting
+Gastrointestinal bleeding
+Loss of appetite
+Constipation
+Blood in vomit
+Hemorrhagic diarrhea
+Scabs
+Skin eruption
+Skin lesions
+Itching
+Scarring
+Red spots over the entire body
+Blisters
+Edema
+Flushed face
+Pimple-like pox
+Acquired immunodeficiency syndrome
+Respiratory syndrome
+Hemorrhagic fever syndrome
