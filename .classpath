@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/protege-core"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/protege-owl"/>
+	<classpathentry kind="lib" path="/protege-core/lib/junit.jar"/>
+	<classpathentry kind="lib" path="/protege-core/lib/looks-2.1.3.jar"/>
+	<classpathentry kind="lib" path="/protege-core/lib/unicode_panel.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/antlr-2.7.5.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/arq-extra.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/arq.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/commons-lang-2.0.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/concurrent.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/edtftpj-1.5.2.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/ekitspell.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/icu4j_3_4.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/iri.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/jcalendar.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/jdom.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/jena.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/jep-2.4.0.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/json.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/junit.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/kazuki.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/log4j-1.2.12.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/lucene-core-2.3.1.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/orphanNodesAlg.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/owlsyntax.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/stax-api-1.0.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/wstx-asl-3.0.0.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="/protege-owl/lib/xml-apis.jar"/>
+	<classpathentry kind="output" path="plugins/classes"/>
+</classpath>
